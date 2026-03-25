@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Justin Karl F. Web dev and Designer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F2F1EE;--surface:#FAFAF8;--surface2:#F0EFEC;
+  --border:#E2E1DD;--border2:#D4D3CE;
+  --text:#0F0F0E;--text2:#5A5955;--text3:#9A9894;
+  --blue:#1D4ED8;--blue-light:#EEF2FF;
+  --green:#16A34A;--green-light:#F0FDF4;
+  --card-shadow:0 1px 3px rgba(0,0,0,.06),0 1px 2px rgba(0,0,0,.04);
+  --card-shadow-hover:0 8px 24px rgba(0,0,0,.10),0 2px 8px rgba(0,0,0,.06);
+}
+[data-theme="dark"]{
+  --bg:#111110;--surface:#1A1A18;--surface2:#222220;
+  --border:#2A2A28;--border2:#363634;
+  --text:#F2F1EE;--text2:#A8A7A3;--text3:#5C5B58;
+  --blue:#6089F8;--blue-light:#1E2A4A;
+  --green:#4ADE80;--green-light:#0A1F10;
+  --card-shadow:0 1px 3px rgba(0,0,0,.3),0 1px 2px rgba(0,0,0,.2);
+  --card-shadow-hover:0 8px 24px rgba(0,0,0,.5),0 2px 8px rgba(0,0,0,.3);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;line-height:1.6;transition:background .3s,color .3s;-webkit-font-smoothing:antialiased;}
+a{text-decoration:none;color:inherit;}
+
+.wrap{max-width:1100px;margin:0 auto;padding:32px 24px 100px;}
+
+/* TOPBAR */
+.topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:40px;}
+.topbar-left{display:flex;align-items:center;gap:8px;font-size:.8125rem;font-weight:600;color:var(--text3);letter-spacing:.06em;text-transform:uppercase;}
+.status-dot{width:7px;height:7px;background:#22C55E;border-radius:50%;box-shadow:0 0 0 3px rgba(34,197,94,.18);animation:pulse 2.4s ease-in-out infinite;}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 3px rgba(34,197,94,.18);}50%{box-shadow:0 0 0 6px rgba(34,197,94,.08);}}
+.icon-btn{width:38px;height:38px;border:1px solid var(--border);background:var(--surface);color:var(--text2);border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;}
+.icon-btn:hover{border-color:var(--border2);color:var(--text);background:var(--surface2);}
+
+/* HERO */
+.hero{display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:start;margin-bottom:24px;padding:28px;background:var(--surface);border:1px solid var(--border);border-radius:16px;box-shadow:var(--card-shadow);}
+.hero-photo{width:96px;height:96px;border-radius:18px;object-fit:cover;border:2.5px solid var(--border);display:block;flex-shrink:0;box-shadow:0 2px 8px rgba(0,0,0,.08);}
+.hero-body{flex:1;min-width:0;}
+.hero-top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:6px;}
+.hero-name{display:flex;align-items:center;gap:8px;}
+.hero-name h1{font-size:1.625rem;font-weight:800;letter-spacing:-.03em;line-height:1.1;}
+.verified-badge{background:var(--blue-light);color:var(--blue);width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem;flex-shrink:0;}
+.hero-location{font-size:.8125rem;color:var(--text3);display:flex;align-items:center;gap:5px;}
+.hero-tagline{font-size:1rem;color:var(--text2);margin-bottom:20px;}
+.hero-tagline em{color:var(--text3);font-style:normal;}
+.hero-actions{display:flex;flex-wrap:wrap;gap:8px;}
+.btn{display:inline-flex;align-items:center;gap:7px;padding:9px 16px;border-radius:8px;font-size:.875rem;font-weight:600;border:1px solid transparent;cursor:pointer;transition:all .18s;white-space:nowrap;text-decoration:none;line-height:1;font-family:'DM Sans',sans-serif;}
+.btn-primary{background:var(--text);color:var(--bg);border-color:var(--text);}
+.btn-primary:hover{opacity:.82;}
+.btn-secondary{background:var(--surface2);color:var(--text);border-color:var(--border);}
+.btn-secondary:hover{border-color:var(--border2);background:var(--bg);}
+.btn-win{background:linear-gradient(135deg,#F59E0B,#EF4444);color:#fff;border:none;cursor:default;}
+
+/* MAIN GRID */
+.main-grid{display:grid;grid-template-columns:1fr 300px;gap:16px;align-items:start;}
+.left{display:grid;gap:16px;}
+.right{display:grid;gap:16px;}
+
+/* CARD */
+.card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:24px;box-shadow:var(--card-shadow);}
+.sec-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;}
+.sec-title{font-size:1.0625rem;font-weight:700;letter-spacing:-.02em;}
+.view-all{font-size:.8125rem;font-weight:600;color:var(--text3);display:flex;align-items:center;gap:4px;transition:color .15s;cursor:pointer;}
+.view-all:hover{color:var(--text);}
+
+/* ABOUT */
+.about-text p{font-size:.9375rem;line-height:1.72;color:var(--text2);margin-bottom:14px;}
+.about-text p:last-child{margin-bottom:0;}
+
+/* STACK */
+.stack-group{margin-bottom:18px;}
+.stack-group:last-child{margin-bottom:0;}
+.stack-group-label{font-size:.6875rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);margin-bottom:10px;}
+.tags{display:flex;flex-wrap:wrap;gap:6px;}
+.tag{padding:5px 11px;background:var(--surface2);border:1px solid var(--border);border-radius:6px;font-size:.8125rem;font-weight:500;color:var(--text2);transition:all .15s;cursor:default;}
+.tag:hover{background:var(--bg);border-color:var(--border2);color:var(--text);}
+.divider{height:1px;background:var(--border);margin:16px 0;}
+
+/* PROJECTS */
+.projects-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.project-card{border:1px solid var(--border);border-radius:12px;overflow:hidden;background:var(--surface2);transition:all .25s;display:flex;flex-direction:column;color:inherit;}
+.project-card:hover{border-color:var(--border2);background:var(--surface);transform:translateY(-3px);box-shadow:var(--card-shadow-hover);}
+.project-img-wrap{width:100%;height:148px;overflow:hidden;background:var(--border);position:relative;}
+.project-img-wrap img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s;}
+.project-card:hover .project-img-wrap img{transform:scale(1.06);}
+.project-body{padding:12px 14px 14px;display:flex;flex-direction:column;gap:5px;flex:1;}
+.project-name{font-size:.9375rem;font-weight:700;letter-spacing:-.01em;}
+.project-desc{font-size:.8125rem;color:var(--text2);line-height:1.45;flex:1;}
+.project-link-btn{display:inline-flex;align-items:center;gap:5px;margin-top:8px;padding:6px 12px;background:var(--blue-light);color:var(--blue);border:1px solid var(--blue);border-radius:6px;font-size:.75rem;font-weight:700;font-family:'DM Mono',monospace;width:fit-content;text-decoration:none;transition:all .18s;}
+.project-link-btn:hover{background:var(--blue);color:#fff;}
+
+/* CERTS */
+.cert-list{display:grid;gap:8px;}
+.cert-item{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;background:var(--surface2);border:1px solid var(--border);border-radius:10px;transition:all .15s;cursor:pointer;}
+.cert-item:hover{border-color:var(--border2);background:var(--surface);}
+.cert-name{font-size:.875rem;font-weight:600;}
+.cert-issuer{font-size:.75rem;color:var(--text3);margin-top:1px;}
+.cert-badge{font-size:.6875rem;font-weight:700;background:var(--green-light);color:var(--green);padding:3px 8px;border-radius:20px;white-space:nowrap;}
+
+/* RECO */
+.reco-quote{font-size:.9375rem;line-height:1.72;color:var(--text2);font-style:italic;padding:16px;background:var(--surface2);border-left:3px solid var(--blue);border-radius:0 8px 8px 0;margin-bottom:14px;transition:opacity .25s;}
+.reco-author{display:flex;align-items:center;gap:10px;}
+.reco-avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#667EEA,#764BA2);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.875rem;flex-shrink:0;}
+.reco-name{font-size:.875rem;font-weight:700;}
+.reco-role{font-size:.75rem;color:var(--text3);}
+.reco-dots{display:flex;gap:5px;margin-top:14px;}
+.reco-dot{width:6px;height:6px;border-radius:50%;background:var(--border2);cursor:pointer;transition:all .2s;}
+.reco-dot.active{background:var(--text);width:18px;border-radius:3px;}
+
+/* EXPERIENCE with hover animation */
+.exp-title{font-size:1.0625rem;font-weight:700;letter-spacing:-.02em;margin-bottom:22px;}
+.timeline{padding-left:22px;border-left:2px solid var(--border);}
+.exp-item{
+  position:relative;
+  padding:10px 12px 10px 16px;
+  margin-bottom:3px;
+  border-radius:10px;
+  cursor:default;
+  transition:background .2s, transform .22s cubic-bezier(.34,1.4,.64,1), box-shadow .2s;
+}
+.exp-item:hover{
+  background:var(--surface2);
+  transform:translateX(5px);
+  box-shadow:var(--card-shadow);
+}
+.exp-dot{
+  position:absolute;
+  left:-29px; top:15px;
+  width:14px; height:14px;
+  border-radius:50%;
+  border:2.5px solid var(--border2);
+  background:var(--surface);
+  transition:all .22s;
+  box-shadow:0 0 0 3px var(--bg);
+}
+.exp-item:hover .exp-dot{
+  border-color:var(--blue);
+  background:var(--blue-light);
+  box-shadow:0 0 0 3px var(--surface2);
+}
+.exp-item.current .exp-dot{
+  background:var(--text);
+  border-color:var(--text);
+  box-shadow:0 0 0 3px var(--bg), 0 0 0 5px var(--text);
+}
+.exp-item.current:hover .exp-dot{
+  background:var(--blue);
+  border-color:var(--blue);
+  box-shadow:0 0 0 3px var(--surface2);
+}
+.exp-role{font-size:.875rem;font-weight:700;line-height:1.3;margin-bottom:2px;}
+.exp-company{font-size:.8125rem;color:var(--text2);}
+.exp-year{font-size:.6875rem;color:var(--text3);font-family:'DM Mono',monospace;margin-top:3px;}
+.exp-badge{display:inline-flex;font-size:.5625rem;font-weight:700;background:var(--text);color:var(--bg);padding:2px 6px;border-radius:4px;letter-spacing:.04em;margin-left:6px;vertical-align:middle;}
+
+/* SIDEBAR LINKS */
+.social-link{display:flex;align-items:center;gap:10px;padding:10px 12px;border:1px solid var(--border);border-radius:8px;background:var(--surface2);font-size:.8125rem;font-weight:600;cursor:pointer;transition:all .15s;margin-bottom:6px;text-decoration:none;color:var(--text);}
+.social-link:last-child{margin-bottom:0;}
+.social-link:hover{border-color:var(--border2);background:var(--surface);}
+.speaking-text{font-size:.875rem;color:var(--text2);line-height:1.6;margin-bottom:14px;}
+
+/* BOTTOM GRID */
+.bottom-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px;}
+.mini-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:18px;box-shadow:var(--card-shadow);}
+.mini-card-title{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--text3);margin-bottom:14px;}
+.link-item{display:flex;align-items:center;justify-content:space-between;padding:10px 12px;border:1px solid var(--border);border-radius:8px;font-size:.8125rem;background:var(--surface2);cursor:pointer;transition:all .15s;margin-bottom:6px;gap:8px;color:var(--text);text-decoration:none;width:100%;font-family:'DM Sans',sans-serif;}
+.link-item:last-child{margin-bottom:0;}
+.link-item:hover{border-color:var(--border2);background:var(--surface);color:var(--blue);}
+.link-icon{color:var(--text3);flex-shrink:0;display:flex;}
+.link-label{font-size:.8125rem;font-weight:600;}
+.link-sub{font-size:.6875rem;color:var(--text3);}
+
+/* FOOTER */
+.footer{text-align:center;padding:40px 0 0;font-size:.8125rem;color:var(--text3);border-top:1px solid var(--border);margin-top:40px;}
+
+/* CHAT FAB */
+.chat-fab{position:fixed;right:20px;bottom:20px;z-index:200;background:var(--text);color:var(--bg);padding:13px 22px;border-radius:50px;display:flex;align-items:center;gap:8px;font-size:.875rem;font-weight:700;box-shadow:0 4px 20px rgba(0,0,0,.18);transition:all .25s;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;}
+.chat-fab:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,0,0,.24);}
+.chat-fab-dot{width:7px;height:7px;background:#22C55E;border-radius:50%;flex-shrink:0;animation:pulse 2.4s ease-in-out infinite;}
+
+/* CHAT WINDOW */
+.chat-window{position:fixed;right:20px;bottom:80px;z-index:199;width:370px;max-height:560px;background:var(--surface);border:1px solid var(--border);border-radius:20px;box-shadow:0 20px 60px rgba(0,0,0,.18);display:flex;flex-direction:column;overflow:hidden;transform:scale(.92) translateY(16px);opacity:0;pointer-events:none;transition:all .25s cubic-bezier(.34,1.4,.64,1);}
+.chat-window.open{transform:scale(1) translateY(0);opacity:1;pointer-events:all;}
+.chat-header{padding:16px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px;background:var(--surface);}
+.chat-avatar{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#1D4ED8,#7C3AED);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:.875rem;flex-shrink:0;}
+.chat-header-info{flex:1;min-width:0;}
+.chat-header-name{font-size:.9375rem;font-weight:700;}
+.chat-header-status{font-size:.75rem;color:var(--green);display:flex;align-items:center;gap:5px;}
+.chat-header-status::before{content:'';width:6px;height:6px;background:var(--green);border-radius:50%;display:inline-block;}
+.chat-close{background:none;border:none;cursor:pointer;color:var(--text3);padding:4px;border-radius:6px;display:flex;align-items:center;justify-content:center;transition:color .15s;}
+.chat-close:hover{color:var(--text);}
+.chat-messages{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px;scroll-behavior:smooth;min-height:260px;max-height:340px;}
+.chat-messages::-webkit-scrollbar{width:4px;}
+.chat-messages::-webkit-scrollbar-thumb{background:var(--border2);border-radius:4px;}
+.msg{display:flex;gap:8px;align-items:flex-end;animation:msgIn .22s ease-out;}
+@keyframes msgIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+.msg.user{flex-direction:row-reverse;}
+.msg-bubble{max-width:82%;padding:10px 14px;border-radius:16px;font-size:.875rem;line-height:1.55;word-break:break-word;}
+.msg.bot .msg-bubble{background:var(--surface2);border:1px solid var(--border);color:var(--text);border-bottom-left-radius:4px;}
+.msg.user .msg-bubble{background:var(--blue);color:#fff;border-bottom-right-radius:4px;}
+.msg-mini-avatar{width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,#1D4ED8,#7C3AED);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.5625rem;font-weight:800;flex-shrink:0;}
+.typing-indicator{display:flex;align-items:center;gap:4px;padding:10px 14px;background:var(--surface2);border:1px solid var(--border);border-radius:16px;border-bottom-left-radius:4px;width:fit-content;}
+.typing-dot{width:6px;height:6px;border-radius:50%;background:var(--text3);animation:typingBounce 1.2s ease-in-out infinite;}
+.typing-dot:nth-child(2){animation-delay:.2s;}
+.typing-dot:nth-child(3){animation-delay:.4s;}
+@keyframes typingBounce{0%,60%,100%{transform:translateY(0);}30%{transform:translateY(-5px);}}
+.chat-suggestions{display:flex;gap:6px;flex-wrap:wrap;padding:0 16px 12px;}
+.suggestion-chip{padding:6px 12px;border:1px solid var(--border);border-radius:20px;font-size:.75rem;font-weight:600;background:var(--surface2);color:var(--text2);cursor:pointer;transition:all .15s;font-family:'DM Sans',sans-serif;}
+.suggestion-chip:hover{border-color:var(--blue);color:var(--blue);background:var(--blue-light);}
+.chat-input-row{padding:12px 14px;border-top:1px solid var(--border);display:flex;gap:8px;align-items:center;background:var(--surface);}
+.chat-input{flex:1;border:1px solid var(--border);border-radius:10px;padding:9px 12px;font-size:.875rem;background:var(--surface2);color:var(--text);outline:none;font-family:'DM Sans',sans-serif;transition:border-color .15s;}
+.chat-input:focus{border-color:var(--blue);}
+.chat-send{width:36px;height:36px;border-radius:10px;background:var(--blue);color:#fff;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:opacity .15s;}
+.chat-send:hover{opacity:.85;}
+.chat-send:disabled{opacity:.35;cursor:not-allowed;}
+
+/* RESPONSIVE */
+@media(max-width:900px){.main-grid{grid-template-columns:1fr;}.right{grid-row:1;}.bottom-grid{grid-template-columns:1fr 1fr;}.projects-grid{grid-template-columns:1fr;}}
+@media(max-width:600px){.wrap{padding:16px 14px 90px;}.hero{grid-template-columns:1fr;gap:16px;}.bottom-grid{grid-template-columns:1fr;}.chat-window{right:8px;left:8px;width:auto;}.chat-fab{right:12px;bottom:12px;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div class="topbar-left"><div class="status-dot"></div>Available for new projects</div>
+    <div class="topbar-right">
+      <button class="icon-btn" id="themeBtn" aria-label="Toggle theme">
+        <svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <img class="hero-photo" src="justin.jpg" alt="Justin">
+    <div class="hero-body">
+      <div class="hero-top">
+        <div class="hero-name">
+          <h1>Justin Karl F. Baluyot</h1>
+        <span class="verified-badge" title="Verified">
+  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none">
+    <circle cx="12" cy="12" r="11" fill="#1D9BF0"/>
+    <path d="M9 12l2.5 2.5 5-5" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</span>
+        </div>
+        <div class="hero-location">
+          <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Metro Manila, Philippines
+        </div>
+      </div>
+      <div class="hero-tagline">Wordpress Developer <em>/</em> Web Designer <em>/</em> Web Developer </div>
+      <div class="hero-actions">
+        <button class="btn btn-primary" onclick="openChat()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          Schedule a Call
+        </button>
+        <a href="mailto:justinkarlbaluyot27@gmail.com" class="btn btn-secondary">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          Send Email
+        </a>
+        <span class="btn btn-win">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          DICT Hack4Gov 2025 10 Place
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN GRID -->
+  <div class="main-grid">
+    <div class="left">
+
+      <!-- ABOUT -->
+      <div class="card">
+        <div class="sec-head"><span class="sec-title">About</span></div>
+        <div class="about-text">
+          <p>I'm a Web Designer and Web & WordPress Developer specializing in JavaScript, Python, and PHP. I Build modern, high performing websites and help businesses streamline processes through technology.</p>
+          <p>I've been expanding my knowledge in modern web technologies and exploring AI integration to create smarter and more efficient solutions.</p>
+          <p>I'm passionate about design and development, always aiming to deliver high-quality work that helps businesses improve their online presence.</p>
+        </div>
+      </div>
+
+      <!-- TECH STACK -->
+      <div class="card">
+        <div class="sec-head">
+          <span class="sec-title">Tech Stack</span>
+          <span class="view-all">View All <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+        </div>
+        <div class="stack-group"><div class="stack-group-label">Frontend</div><div class="tags"><span class="tag">JavaScript</span><span class="tag">Bootstrap</span><span class="tag">HTML</span><span class="tag">Next.js</span><span class="tag">CSS</span><span class="tag">Tailwind CSS</span></div></div>
+        <div class="divider"></div>
+        <div class="stack-group"><div class="stack-group-label">Backend</div><div class="tags"><span class="tag">Laravel</span><span class="tag">Python</span><span class="tag">PHP</span><span class="tag">Java</span><span class="tag">MySQL</span><span class="tag">MongoDB</span></div></div>
+      </div>
+
+      <!-- PROJECTS -->
+      <div class="card">
+        <div class="sec-head">
+          <span class="sec-title">Recent Projects</span>
+          <span class="view-all">View All <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+        </div>
+        <div class="projects-grid">
+
+          <div class="project-card">
+            <div class="project-img-wrap"><img src="Screenshot_1.png" alt="BFAR Zambales" loading="lazy"></div>
+            <div class="project-body">
+              <div class="project-name">BFAR Zambales</div>
+              <div class="project-desc">Resource distribution and inventory tracking platform for BFAR Zambales, ensuring accurate monitoring of supplies and allocations.</div>
+              <a href="https://bfarbotolanzambales.pcbics.net/login.php" target="_blank" rel="noopener" class="project-link-btn">
+                ↗ Visit Site
+              </a>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-img-wrap"><img src="Cover.png" alt="Design Projects" loading="lazy"></div>
+            <div class="project-body">
+              <div class="project-name">Selected Design Projects</div>
+              <div class="project-desc">A collection of bespoke website designs focusing on modern aesthetics, intuitive user interfaces, and high performance layouts.</div>
+              <a href="https://www.figma.com/design/L5FytsVODVaMJY59v32ZXt/My-Website-Design?node-id=1-38096&t=LoBVc2gbaKy5baaQ-1" target="_blank" rel="noopener" class="project-link-btn">
+                ↗ View on Figma
+              </a>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-img-wrap"><img src="Screenshot_2.png" alt="Gohibachi" loading="lazy"></div>
+            <div class="project-body">
+              <div class="project-name">Gohibachi</div>
+              <div class="project-desc">Co-developed the Gohibachi WordPress platform, contributing to technical strategy and site performance optimization.</div>
+              <a href="https://gohibachinow.com" target="_blank" rel="noopener" class="project-link-btn">
+                ↗ Visit Site
+              </a>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-img-wrap"><img src="Screenshot_3.png" alt="Aslan Design" loading="lazy"></div>
+            <div class="project-body">
+              <div class="project-name">Aslan Design & Build</div>
+              <div class="project-desc">Co-developed the Aslan WordPress platform, contributing to technical strategy and site performance optimization.</div>
+              <a href="https://aslandesignandbuild.com" target="_blank" rel="noopener" class="project-link-btn">
+                ↗ Visit Site
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- CERTIFICATIONS -->
+      <div class="card">
+        <div class="sec-head">
+          <span class="sec-title">Certifications</span>
+          <span class="view-all">View All <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+        </div>
+        <div class="cert-list">
+          <div class="cert-item"><div><div class="cert-name">DICT Hack4Gov 2025</div><div class="cert-issuer">DICT</div></div><span class="cert-badge">Top 10</span></div>
+          <div class="cert-item"><div><div class="cert-name">Web Designer 2024</div><div class="cert-issuer">Google</div></div><span class="cert-badge">Certified</span></div>
+          <div class="cert-item"><div><div class="cert-name">Web Developer</div><div class="cert-issuer">Google</div></div><span class="cert-badge">Certified</span></div>
+          <div class="cert-item"><div><div class="cert-name">Full Stack Developer</div><div class="cert-issuer">Google</div></div><span class="cert-badge">Certified</span></div>
+        </div>
+      </div>
+
+      <!-- RECOMMENDATIONS -->
+      <div class="card">
+        <div class="sec-head"><span class="sec-title">Recommendations</span></div>
+        <div class="reco-quote" id="recoQuote">"Justin's eye for design is exceptional. He delivered a WordPress site that looked better than anything we'd seen — clean, fast, and exactly on brand. He's become our go-to developer."</div>
+        <div class="reco-author">
+          <div class="reco-avatar" id="recoInitials">RC</div>
+          <div><div class="reco-name" id="recoName">Ramon Cruz</div><div class="reco-role" id="recoRole">Business Owner, Metro Manila</div></div>
+        </div>
+        <div class="reco-dots" id="recoDots"></div>
+      </div>
+
+    </div><!-- /left -->
+
+    <div class="right">
+
+      <!-- EXPERIENCE -->
+      <div class="card">
+        <div class="exp-title">Experience</div>
+        <div class="timeline">
+          <div class="exp-item current"><div class="exp-dot"></div><div class="exp-role">Web Designer & Wordpress Developer <span class="exp-badge">NOW</span></div><div class="exp-company">Tech Home</div><div class="exp-year">2025</div></div>
+          <div class="exp-item"><div class="exp-dot"></div><div class="exp-role">Web Designer & Web Developer</div><div class="exp-company">Creo Digital</div><div class="exp-year">2025</div></div>
+          <div class="exp-item"><div class="exp-dot"></div><div class="exp-role">Wordpress Developer</div><div class="exp-company">Tech Y Company</div><div class="exp-year">2024</div></div>
+          <div class="exp-item"><div class="exp-dot"></div><div class="exp-role">Web Designer</div><div class="exp-company">Google</div><div class="exp-year">2023</div></div>
+          <div class="exp-item"><div class="exp-dot"></div><div class="exp-role">Backend Developer</div><div class="exp-company">PCB</div><div class="exp-year">2021</div></div>
+          <div class="exp-item"><div class="exp-dot"></div><div class="exp-role">Front End Developer</div><div class="exp-company">PCB</div><div class="exp-year">2021</div></div>
+          <div class="exp-item"><div class="exp-dot"></div><div class="exp-role">BS Information Technology</div><div class="exp-company">Polytechnic College of Botolan</div><div class="exp-year">2021</div></div>
+          <div class="exp-item"><div class="exp-dot"></div><div class="exp-role">Hello World 👋</div><div class="exp-company">Wrote my first line of code</div><div class="exp-year">2019</div></div>
+        </div>
+      </div>
+
+      <!-- SOCIAL -->
+      <div class="card">
+        <div class="sec-head" style="margin-bottom:14px"><span class="sec-title">Connect</span></div>
+        <a href="https://www.linkedin.com/in/justin-karl-baluyot-b2b86b238/" class="social-link"><span style="font-weight:800;font-size:.875rem;width:20px;text-align:center;color:var(--text3)">in</span><span>LinkedIn</span></a>
+        <a href="https://github.com/KarlBaluyot" class="social-link"><span style="font-family:'DM Mono',monospace;font-size:.75rem;width:20px;text-align:center;color:var(--text3)">GH</span><span>GitHub</span></a>
+        <a href="https://www.instagram.com/karl.baluyot/" class="social-link"><span style="width:20px;text-align:center;color:var(--text3)">✦</span><span>Instagram</span></a>
+      </div>
+
+      <!-- SPEAKING -->
+      <div class="card">
+        <div class="sec-head" style="margin-bottom:14px"><span class="sec-title">Speaking</span></div>
+        <div class="speaking-text">Available for speaking engagements on Web Designing and Development.</div>
+        <button class="btn btn-secondary" style="width:100%;justify-content:center;" onclick="openChat()">Get in Touch</button>
+      </div>
+
+    </div><!-- /right -->
+  </div>
+
+  <!-- BOTTOM STRIP -->
+  <div class="bottom-grid" id="contact">
+    <div class="mini-card">
+      <div class="mini-card-title">Email</div>
+      <a href="mailto:justinkarl@email.com" class="link-item">
+        <span class="link-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></span>
+        <span style="flex:1"><div class="link-label">justinkarlbaluyot27@gmail.com</div></span>
+      </a>
+    </div>
+    <div class="mini-card">
+      <div class="mini-card-title">Scheduling</div>
+      <button class="link-item" onclick="openChat()">
+        <span class="link-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span>
+        <span style="flex:1;text-align:left"><div class="link-label">Schedule a Call</div><div class="link-sub">Book 30 min</div></span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+    </div>
+    <div class="mini-card">
+      <div class="mini-card-title">Resume</div>
+      <a href="#" class="link-item">
+        <span class="link-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></span>
+        <span style="flex:1"><div class="link-label">Download CV</div><div class="link-sub">PDF · 2025</div></span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <div class="footer">© 2026 Justin Karl F. Baluyot · All rights reserved · Metro Manila, PH</div>
+</div>
+
+<!-- CHAT FAB -->
+<button class="chat-fab" id="chatFab" onclick="openChat()">
+  <div class="chat-fab-dot"></div>
+  Chat with Justin
+</button>
+
+<!-- CHAT WINDOW -->
+<div class="chat-window" id="chatWindow">
+  <div class="chat-header">
+    <div class="chat-avatar">JK</div>
+    <div class="chat-header-info">
+      <div class="chat-header-name">Justin Karl</div>
+      <div class="chat-header-status">Online now · AI-powered</div>
+    </div>
+    <button class="chat-close" onclick="closeChat()">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+  <div class="chat-messages" id="chatMessages"></div>
+  <div class="chat-suggestions" id="chatSuggestions">
+    <button class="suggestion-chip" onclick="sendSuggestion(this)">What do you do?</button>
+    <button class="suggestion-chip" onclick="sendSuggestion(this)">See projects</button>
+    <button class="suggestion-chip" onclick="sendSuggestion(this)">Hire / collaborate</button>
+    <button class="suggestion-chip" onclick="sendSuggestion(this)">Tech stack</button>
+  </div>
+  <div class="chat-input-row">
+    <input class="chat-input" id="chatInput" type="text" placeholder="Ask me anything…" autocomplete="off">
+    <button class="chat-send" id="chatSend" onclick="handleSend()">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+    </button>
+  </div>
+</div>
+
+<script>
+// ── THEME ──────────────────────────────────────────────────────
+const themeBtn = document.getElementById('themeBtn');
+const sunIcon  = document.getElementById('sunIcon');
+const moonIcon = document.getElementById('moonIcon');
+let isDark = localStorage.getItem('theme') === 'dark';
+applyTheme();
+themeBtn.addEventListener('click', () => { isDark = !isDark; applyTheme(); });
+function applyTheme(){
+  isDark
+    ? document.documentElement.setAttribute('data-theme','dark')
+    : document.documentElement.removeAttribute('data-theme');
+  sunIcon.style.display  = isDark ? 'none' : '';
+  moonIcon.style.display = isDark ? '' : 'none';
+  localStorage.setItem('theme', isDark ? 'dark' : 'light');
+}
+
+// ── RECOMMENDATIONS ────────────────────────────────────────────
+const recos = [
+  {q:'"Justin\'s eye for design is exceptional. He delivered a WordPress site that looked better than anything we\'d seen — clean, fast, and exactly on brand. He\'s become our go-to developer."', n:'Ramon Cruz', r:'Business Owner, Metro Manila', i:'RC'},
+  {q:'"Working with Justin on our web redesign was seamless. He understood our vision immediately and brought creative ideas that elevated the final product beyond our expectations."', n:'Ana Reyes', r:'Marketing Manager, Startup', i:'AR'},
+  {q:'"Justin is one of those rare developers who truly understands both design and code. He built our company site from scratch and the results spoke for themselves — traffic doubled in a month."', n:'Mark Domingo', r:'CEO, E-commerce Brand', i:'MD'},
+];
+let recoIdx = 0;
+const dotsEl = document.getElementById('recoDots');
+recos.forEach((_,i) => {
+  const d = document.createElement('div');
+  d.className = 'reco-dot' + (i===0?' active':'');
+  d.onclick = () => setReco(i);
+  dotsEl.appendChild(d);
+});
+function setReco(i){
+  recoIdx = i;
+  const q = document.getElementById('recoQuote');
+  q.style.opacity = '0';
+  setTimeout(() => {
+    q.textContent = recos[i].q;
+    document.getElementById('recoName').textContent = recos[i].n;
+    document.getElementById('recoRole').textContent = recos[i].r;
+    document.getElementById('recoInitials').textContent = recos[i].i;
+    q.style.opacity = '1';
+    document.querySelectorAll('.reco-dot').forEach((d,j) => d.classList.toggle('active', j===i));
+  }, 220);
+}
+setInterval(() => setReco((recoIdx+1) % recos.length), 6500);
+
+// ── CHAT ───────────────────────────────────────────────────────
+let chatOpen   = false;
+let chatReady  = true;
+let greeted    = false;
+let chatHistory = [];
+
+const SYSTEM_PROMPT = `You are an AI assistant representing Justin Karl F. Baluyot, a WordPress Developer and Web Designer based in Metro Manila, Philippines. Speak warmly and professionally in first person AS Justin.
+
+KEY FACTS:
+- Current: Web Designer & WordPress Developer at Tech Home (2025–present)
+- Previous: Web Designer & Web Developer at Creo Digital (2025), WordPress Developer at Tech Y Company (2024), Web Designer at Google (2023), Backend & Frontend Developer at PCB (2021)
+- Education: BS Information Technology, Polytechnic College of Botolan (2021). Started coding in 2019.
+- Skills: JavaScript, Bootstrap, HTML, Next.js, CSS, Tailwind CSS, Laravel, Python, PHP, Java, MySQL, MongoDB, WordPress
+- Projects: BFAR Zambales (bfarbotolanzambales.pcbics.net) — resource distribution platform; Selected Design Projects (Figma) — web design portfolio; Gohibachi (gohibachinow.com) — WordPress platform; Aslan Design & Build (aslandesignandbuild.com) — WordPress platform
+- Certifications: DICT Hack4Gov 2025 Top 10, Google Web Designer 2024, Google Web Developer, Google Full Stack Developer
+- Awards: DICT Hack4Gov 2025 Top 10 Place
+- Available for: freelance projects, collaboration, web design, WordPress development, speaking engagements
+
+Keep replies to 2–4 sentences. Be friendly, concise, and specific. If unsure, say so honestly.`;
+
+function openChat(){
+  chatOpen = true;
+  document.getElementById('chatWindow').classList.add('open');
+  document.getElementById('chatFab').style.transform = 'scale(0.88)';
+  if(!greeted){
+    greeted = true;
+    addBotMessage("Hey! 👋 I'm an AI that can answer anything about Justin — his work, projects, tech stack, or how to collaborate. What would you like to know?");
+  }
+  setTimeout(() => document.getElementById('chatInput').focus(), 280);
+}
+
+function closeChat(){
+  chatOpen = false;
+  document.getElementById('chatWindow').classList.remove('open');
+  document.getElementById('chatFab').style.transform = '';
+}
+
+function addBotMessage(text){
+  const msgs = document.getElementById('chatMessages');
+  const div  = document.createElement('div');
+  div.className = 'msg bot';
+  div.innerHTML = `<div class="msg-mini-avatar">JK</div><div class="msg-bubble">${text.replace(/\n/g,'<br>')}</div>`;
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+  document.getElementById('chatSuggestions').style.display = 'none';
+}
+
+function addUserMessage(text){
+  const msgs = document.getElementById('chatMessages');
+  const div  = document.createElement('div');
+  div.className = 'msg user';
+  div.innerHTML = `<div class="msg-bubble">${escHtml(text)}</div>`;
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+function showTyping(){
+  const msgs = document.getElementById('chatMessages');
+  const div  = document.createElement('div');
+  div.className = 'msg bot'; div.id = 'typingEl';
+  div.innerHTML = '<div class="msg-mini-avatar">JK</div><div class="typing-indicator"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div>';
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+function hideTyping(){ const el = document.getElementById('typingEl'); if(el) el.remove(); }
+
+function escHtml(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+function sendSuggestion(btn){
+  document.getElementById('chatSuggestions').style.display = 'none';
+  sendMessage(btn.textContent);
+}
+
+function handleSend(){
+  const input = document.getElementById('chatInput');
+  const text  = input.value.trim();
+  if(!text || !chatReady) return;
+  input.value = '';
+  sendMessage(text);
+}
+
+document.getElementById('chatInput').addEventListener('keydown', e => { if(e.key === 'Enter') handleSend(); });
+
+async function sendMessage(userText){
+  addUserMessage(userText);
+  chatHistory.push({ role:'user', content: userText });
+  chatReady = false;
+  document.getElementById('chatSend').disabled = true;
+  showTyping();
+
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 400,
+        system: SYSTEM_PROMPT,
+        messages: chatHistory
+      })
+    });
+    const data = await res.json();
+    hideTyping();
+    const reply = (data.content || []).filter(b => b.type === 'text').map(b => b.text).join('')
+      || "Sorry, I couldn't respond right now. Feel free to reach out directly!";
+    chatHistory.push({ role: 'assistant', content: reply });
+    addBotMessage(reply);
+  } catch(err) {
+    hideTyping();
+    addBotMessage("I'm having trouble connecting right now. You can reach Justin directly via email 🙏");
+  }
+
+  chatReady = true;
+  document.getElementById('chatSend').disabled = false;
+  document.getElementById('chatInput').focus();
+}
+
+// ── KEYBOARD ESC ──────────────────────────────────────────────
+document.addEventListener('keydown', e => {
+  if(e.key === 'Escape'){ if(chatOpen) closeChat(); }
+});
+</script>
+</body>
+</html>
